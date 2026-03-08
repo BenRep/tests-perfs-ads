@@ -1,0 +1,46 @@
+<configuration>
+
+    <!-- Appender console avec timestamp précis pour les mesures -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{20} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender fichier dédié aux mesures de performance -->
+    <appender name="PERF_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>results/performance-logs.txt</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger racine : console uniquement -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <!-- Loggers des contrôleurs/presenters : console + fichier -->
+    <logger name="fr.benrep.ads.mvc.CalculatorController" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="PERF_FILE" />
+    </logger>
+    <logger name="fr.benrep.ads.mvp.CalculatorPresenter" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="PERF_FILE" />
+    </logger>
+    <logger name="fr.benrep.ads.mvvm.CalculatorViewModel" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="PERF_FILE" />
+    </logger>
+    <logger name="fr.benrep.ads.mvi.CalculatorStore" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="PERF_FILE" />
+    </logger>
+    <logger name="fr.benrep.ads.viper.CalculatorPresenter" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="PERF_FILE" />
+    </logger>
+
+</configuration>
