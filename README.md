@@ -1,11 +1,11 @@
-# 🧪 POC Java pour des tests de performance sur des modèles de conception frontend
+# POC Java pour des tests de performance sur des modèles de conception frontend
 
 > **Projet réalisé dans le cadre d'un mémoire ADS (Application à la Démarche Scientifique)**  
-> ⚠️ **Note sur l'IA** : L'intégralité du code de ce projet a été générée par Claude (Anthropic) à partir de spécifications rédigées par Benjamin REPELLIN, l'auteur du mémoire. L'usage de l'IA est documenté dans ce mémoire dans une démarche de transparence scientifique. Le code a été relu, validé et adapté par l'auteur.
+> **Note sur l'IA** : L'intégralité du code de ce projet a été générée par Claude (Anthropic) à partir de spécifications rédigées par Benjamin REPELLIN, l'auteur du mémoire. L'usage de l'IA est documenté dans ce mémoire dans une démarche de transparence scientifique. Le code a été relu, validé et adapté par l'auteur.
 
 ---
 
-## 📋 Table des matières
+## Table des matières
 
 - [Contexte](#-contexte)
 - [Objectif du POC](#-objectif-du-poc)
@@ -19,7 +19,7 @@
 
 ---
 
-## 📚 Contexte
+## Contexte
 
 Ce dépôt contient le code source d'un **Proof of Concept (POC)** développé pour un mémoire universitaire en informatique. Le mémoire compare les principaux modèles de conception (*design patterns*) utilisés dans le développement frontend Java, selon des critères de performance, de maintenabilité et de couplage architectural.
 
@@ -27,9 +27,9 @@ Les patterns étudiés sont : **MVC**, **MVP**, **MVVM**, **MVI** et **VIPER**.
 
 ---
 
-## 🎯 Objectif du POC
+## Objectif du POC
 
-L'objectif est de comparer les 5 patterns sur une **base strictement équivalente** :
+L'objectif est de comparer les 5 patterns sur une base **strictement équivalente** :
 
 - **Même technologie frontend** : Java Swing
 - **Même interface graphique** : dimensions, textes, boutons et layout identiques pour tous les patterns
@@ -41,7 +41,7 @@ Chaque pattern loggue le **temps de réponse en microsecondes** pour chaque acti
 
 ---
 
-## 🏗️ Architecture du projet
+## Architecture du projet
 
 ### Vue d'ensemble
 
@@ -83,9 +83,9 @@ Les calculs sont volontairement simples (O(1)) pour que la latence mesurée refl
 
 ---
 
-## 🔷 Les 5 patterns implémentés
+## Les 5 patterns implémentés
 
-### MVC — Model View Controller
+### MVC - Model View Controller
 
 ```
 View ──observe──► Model ◄──écrit── Controller ──lit──► View
@@ -99,7 +99,7 @@ View ──observe──► Model ◄──écrit── Controller ──lit─�
 
 ---
 
-### MVP — Model View Presenter
+### MVP - Model View Presenter
 
 ```
 View ──délègue──► Presenter ──lit/écrit──► Model
@@ -115,7 +115,7 @@ View ◄──MAJ manuelle── Presenter
 
 ---
 
-### MVVM — Model View ViewModel
+### MVVM - Model View ViewModel
 
 ```
 View ──binding──► ObservableProperty ◄──set()── ViewModel ──► Model
@@ -130,7 +130,7 @@ View ──binding──► ObservableProperty ◄──set()── ViewModel �
 
 ---
 
-### MVI — Model View Intent
+### MVI - Model View Intent
 
 ```
 View ──dispatch(Intent)──► Store(Reducer) ──new State──► View.render(state)
@@ -146,7 +146,7 @@ View ──dispatch(Intent)──► Store(Reducer) ──new State──► Vie
 
 ---
 
-### VIPER — View Interactor Presenter Entity Router
+### VIPER - View Interactor Presenter Entity Router
 
 ```
 View ──►  Presenter ──► Interactor ──► Backend
@@ -165,7 +165,7 @@ View ──►  Presenter ──► Interactor ──► Backend
 
 ---
 
-## 📦 Prérequis
+## Prérequis
 
 | Outil | Version minimale |
 |-------|-----------------|
@@ -180,7 +180,7 @@ mvn -version
 
 ---
 
-## 🚀 Installation et lancement
+## Installation et lancement
 
 ### 1. Cloner le dépôt
 
@@ -191,7 +191,8 @@ cd /tests-perfs-ads/
 
 ### 2. Compiler le projet
 
-Sur IntelliJ, le projet est reconnu en tant que projet Maven. Il suffit d'accepter la notification pour synchroniser le projet.
+Sur IntelliJ, le projet est reconnu en tant que projet Maven. Il suffit d'accepter la notification pour synchroniser le projet.  
+Si cette ne se produit pas automatiquement, faites un clic droit sur le `pom.xml` → Ajouter en tant que projet Maven.
 
 ### 3. Choisir le pattern à lancer
 
@@ -225,12 +226,12 @@ L'application Swing s'ouvre avec :
 
 - **Opérande A** et **Opérande B** : saisir des entiers
 - **Opération** : choisir `+`, `-` ou `*`
-- **Calculer (backend)** : déclenche un appel au backend hexagonal et affiche le résultat
-- **Reset (modèle)** : réinitialise le modèle local sans appel backend
+- **Calculer** : déclenche un appel au backend hexagonal et affiche le résultat
+- **Reset** : réinitialise le modèle local sans appel backend
 
 ---
 
-## 📊 Mesure des performances
+## Mesure des performances
 
 ### Logs de performance
 
@@ -243,7 +244,7 @@ HH:mm:ss.SSS [PATTERN][ACTION] Temps de réponse : X µs
 Exemples :
 ```
 14:23:01.042 [MVC][CALCULATE] Temps de réponse : 312 µs
-14:23:01.043 [MVC][RESET]     Temps de réponse : 18 µs
+14:23:04.651 [MVC][RESET]     Temps de réponse : 18 µs
 ```
 
 ### Fichier de résultats
@@ -267,7 +268,7 @@ Pour reproduire les conditions du mémoire :
 
 ---
 
-## 📁 Structure des fichiers
+## Structure des fichiers
 
 ```
 design-patterns-poc/
@@ -322,7 +323,7 @@ design-patterns-poc/
 
 ---
 
-## 🔬 Remarques méthodologiques
+## Remarques méthodologiques
 
 ### Limites du POC
 
@@ -343,10 +344,10 @@ Une calculatrice simple a été choisie délibérément pour minimiser la comple
 
 ---
 
-## 📄 Licence
+## Licence
 
 Ce projet est mis à disposition à des fins académiques. Aucune licence commerciale n'est associée.
 
 ---
 
-*Projet généré avec l'assistance de [Claude](https://claude.ai) (Anthropic) — dans le cadre d'un mémoire ADS.*
+*Projet généré avec l'assistance de [Claude](https://claude.ai) (Anthropic) dans le cadre d'un mémoire ADS.*
